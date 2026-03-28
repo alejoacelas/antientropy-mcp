@@ -1,3 +1,7 @@
+# Project files
+*.pdf
+README.md
+
 # Python
 __pycache__/
 *.py[cod]

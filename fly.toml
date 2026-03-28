@@ -1,34 +1,40 @@
+# fly.toml app configuration file generated for antientropy-mcp on 2026-03-28T20:36:09-03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
 app = 'antientropy-mcp'
 primary_region = 'iad'
 
 [build]
 
 [env]
-  CACHE_DIR = "/data"
-  TRANSPORT = "streamable-http"
-  HOST = "0.0.0.0"
-  PORT = "8080"
+  CACHE_DIR = '/data'
+  HOST = '0.0.0.0'
+  PORT = '8080'
+  TRANSPORT = 'streamable-http'
+
+[[mounts]]
+  source = 'data'
+  destination = '/data'
 
 [http_service]
   internal_port = 8080
   force_https = true
-  processes = ['app']
   auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
+  processes = ['app']
 
-[[http_service.checks]]
-  interval = "30s"
-  timeout = "5s"
-  grace_period = "15s"
-  method = "GET"
-  path = "/healthz"
-
-[[mounts]]
-  source = "data"
-  destination = "/data"
+  [[http_service.checks]]
+    interval = '30s'
+    timeout = '5s'
+    grace_period = '15s'
+    method = 'GET'
+    path = '/healthz'
 
 [[vm]]
   memory = '256MB'
   cpu_kind = 'shared'
   cpus = 1
+  memory_mb = 256

@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 from starlette.types import ASGIApp, Receive, Scope, Send
@@ -17,8 +18,18 @@ from antientropy_mcp.sync import sync as run_sync
 
 CACHE_DIR = Path(os.environ.get("CACHE_DIR", str(Path.home() / ".antientropy-mcp")))
 AUTH_TOKEN = os.environ.get("AUTH_TOKEN")
+TRANSPORT = os.environ.get("TRANSPORT", "stdio")
 
 cache = ArticleCache(CACHE_DIR)
+
+# When serving over HTTP, disable DNS rebinding protection so any host can
+# connect (the server is meant to be publicly accessible; optional bearer-token
+# auth provides access control).
+_transport_security: TransportSecuritySettings | None = None
+if TRANSPORT != "stdio":
+    _transport_security = TransportSecuritySettings(
+        enable_dns_rebinding_protection=False,
+    )
 
 mcp = FastMCP(
     name="antientropy",
@@ -29,6 +40,7 @@ mcp = FastMCP(
         "and antientropy_read to read full articles. "
         "Run antientropy_sync on first use to populate the cache."
     ),
+    transport_security=_transport_security,
 )
 
 
