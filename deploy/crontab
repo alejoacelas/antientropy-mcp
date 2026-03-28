@@ -1,0 +1,1 @@
+7 6 * * * cd /app && uv run antientropy-sync --cache-dir /data >> /data/sync.log 2>&1
