@@ -20,6 +20,7 @@ dependencies = [
     { name = "markdownify" },
     { name = "mcp" },
     { name = "pyyaml" },
+    { name = "uvicorn" },
 ]
 
 [package.dev-dependencies]
@@ -34,6 +35,7 @@ requires-dist = [
     { name = "markdownify", specifier = ">=0.14" },
     { name = "mcp", specifier = ">=1.26" },
     { name = "pyyaml", specifier = ">=6.0.3" },
+    { name = "uvicorn", specifier = ">=0.42.0" },
 ]
 
 [package.metadata.requires-dev]
