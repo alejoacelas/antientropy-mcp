@@ -11,13 +11,14 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
 WORKDIR /app
 
-# Install dependencies (cached layer)
+# Install dependencies only (cached layer — no project source needed)
 COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen --no-dev
+RUN uv sync --frozen --no-dev --no-install-project
 
-# Copy application code
+# Copy application code then install the project itself
 COPY src/ src/
 COPY deploy/ deploy/
+RUN uv sync --frozen --no-dev
 
 # Make entrypoint executable
 RUN chmod +x deploy/entrypoint.sh
