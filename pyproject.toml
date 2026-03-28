@@ -2,7 +2,6 @@
 name = "antientropy-mcp"
 version = "0.1.0"
 description = "Add your description here"
-readme = "README.md"
 authors = [
     { name = "Alejandro Acelas", email = "alejoacelas@gmail.com" }
 ]
@@ -19,7 +18,7 @@ dependencies = [
 antientropy-sync = "antientropy_mcp.sync:cli_sync"
 
 [build-system]
-requires = ["uv_build>=0.10.3"]
+requires = ["uv_build>=0.10.3,<0.12"]
 build-backend = "uv_build"
 
 [dependency-groups]
