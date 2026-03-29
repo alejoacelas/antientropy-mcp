@@ -14,7 +14,6 @@ EXPECTED_TOOLS = {
     "antientropy_grep",
     "antientropy_read",
     "antientropy_categories",
-    "antientropy_sync",
 }
 
 

@@ -1,6 +1,5 @@
 # Project files
 *.pdf
-README.md
 
 # Python
 __pycache__/
