@@ -1,8 +1,3 @@
----
-human_edit_tracking:
-  enabled: true
-  history: []
----
 # antientropy-mcp
 
 MCP server for searching and reading articles from the [AntiEntropy Resource Portal](https://resourceportal.antientropy.org/docs). Gives Claude Code (or any MCP client) access to 140+ articles on nonprofit governance, compliance, HR policies, and fiscal sponsorship.
